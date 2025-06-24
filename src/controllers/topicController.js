@@ -52,6 +52,7 @@ const createTopic = async (req, res) => {
         });
 
         const savedTopic = await newTopic.save();
+        await savedTopic.populate('subject', 'name');
         res.status(201).json(savedTopic);
     } catch (error) {
         console.error('Create Topic Error:', error.message);
